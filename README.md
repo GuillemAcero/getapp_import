@@ -29,6 +29,8 @@ $ mix escript.build
 
 All the code of the script is located at `lib/getapp_import.ex` and the tests are in `test/getapp_import_test.exs`
 
+For the `main/1` function I decided to follow a railway programming approach taking advantage of the easy pattern-matching elixir provides us.
+ 
 <br/>
 
 The structure to run the script is the following:
