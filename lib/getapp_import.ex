@@ -6,14 +6,12 @@ defmodule GetappImport do
 
   def main(args) do
     case validate_arguments(args) do
-      {:error, _} = error -> error
+      {:error, _} = error ->
+        error
 
       {:ok, {provider, path}} ->
         read_file(provider, path)
-
     end
-
-
   end
 
   def validate_arguments(args) do
@@ -27,21 +25,20 @@ defmodule GetappImport do
     [products] = YamlElixir.read_all_from_file!(path)
 
     try do
-      Enum.map(products, & format_yaml(&1)) |> IO.inspect
+      Enum.map(products, &format_yaml(&1)) |> IO.inspect()
     rescue
-      File.Error -> {:error, :file_bad_structure} |> IO.inspect
+      File.Error -> {:error, :file_bad_structure} |> IO.inspect()
     end
   end
 
   def read_file(:softwareadvice, path) do
-
   end
 
   defp format_yaml(%{
-    "name" => name,
-    "tags" => tag,
-    "twitter" => twitter
-  }) do
+         "name" => name,
+         "tags" => tag,
+         "twitter" => twitter
+       }) do
     %{
       name: name,
       categories: tag,
@@ -49,7 +46,7 @@ defmodule GetappImport do
     }
   end
 
-  defp format_yaml(_), do: raise File.Error
+  defp format_yaml(_), do: raise(File.Error)
 
   ### PRIV
 
